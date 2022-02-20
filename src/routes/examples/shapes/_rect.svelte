@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Stage from '$lib/stage.svelte';
 	import Layer from '$lib/layer.svelte';
-	import Rectangle from '$lib/shapes/rectangle.svelte';
+	import Rect from '$lib/shapes/rect.svelte';
 
 	let container;
 </script>
@@ -11,7 +11,7 @@
 {#if container}
 	<Stage width={500} height={500} {container}>
 		<Layer>
-			<Rectangle
+			<Rect
 				x={20}
 				y={20}
 				width={100}
@@ -20,7 +20,7 @@
 				stroke="black"
 				strokeWidth={4}
 			/>
-			<Rectangle
+			<Rect
 				x={150}
 				y={40}
 				width={100}
@@ -29,7 +29,7 @@
 				shadowBlur={10}
 				cornerRadius={4}
 			/>
-			<Rectangle
+			<Rect
 				x={50}
 				y={120}
 				width={100}
