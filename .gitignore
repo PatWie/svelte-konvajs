@@ -10,5 +10,5 @@ node_modules
 !.env.example
 /src/routes/examples/**/*.svelte
 !/src/routes/examples/**/_*.svelte
-!/src/routes/index.svelte
+/src/routes/index.svelte
 *.swp

@@ -9,21 +9,21 @@
     afterUpdate,
   } from "svelte";
   import Konva from "konva";
-  import { regularPolygonKey, layerKey, eventNames } from "$lib/utils";
+  import { textPathKey, layerKey, eventNames } from "$lib/utils";
   import { createEventDispatcher } from "svelte";
   const dispatcher = createEventDispatcher();
 
-  export let node: Konva.RegularPolygon = undefined;
-  setContext(regularPolygonKey, {
-    getRegularPolygon: () => node,
+  export let node: Konva.TextPath = undefined;
+  setContext(textPathKey, {
+    getTextPath: () => node,
   });
 
   const { getLayer } = getContext(layerKey);
   const layer = getLayer();
 
   onMount(async () => {
-    node = new Konva.RegularPolygon({
-      ...($$restProps as Konva.RegularPolygonConfig),
+    node = new Konva.TextPath({
+      ...($$restProps as Konva.TextPathConfig),
     });
     layer.add(node);
     eventNames.forEach((event_name) => {
@@ -34,7 +34,9 @@
   });
 
   afterUpdate(() => {
-    node.setAttrs($$restProps as Konva.RegularPolygonConfig);
+    node.setAttrs({
+      ...($$restProps as Konva.TextPathConfig),
+    });
   });
 
   onDestroy(() => {
