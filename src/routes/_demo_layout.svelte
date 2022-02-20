@@ -1,11 +1,12 @@
 <script>
   import Highlight from "svelte-highlight";
+  import hljs from "highlight.js";
   import typescript from "svelte-highlight/src/languages/typescript";
   import css from "svelte-highlight/src/languages/css";
   import xml from "svelte-highlight/src/languages/xml";
   import windi_svelte_components from "./_code_snippet/windi-svelte-components";
 
-  const language = {
+  const svelte_language = {
     name: "svelte-language",
     register: (hljs) => {
       return {
@@ -101,7 +102,7 @@
 
         <div class="px-4 py-2  relative">
           <div class="font-mono  text-sm">
-            <Highlight {language} code={unescapeHtml(code)} />
+            <Highlight language={svelte_language} code={unescapeHtml(code)} />
           </div>
         </div>
       </div>

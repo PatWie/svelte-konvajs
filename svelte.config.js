@@ -16,7 +16,6 @@ const config = {
     }),
     vite: {
       plugins: [WindiCSS()],
-
       optimizeDeps: {
         include: ["highlight.js/lib/core"],
       },
