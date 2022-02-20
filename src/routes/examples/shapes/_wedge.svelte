@@ -1,7 +1,7 @@
 <script lang="ts">
   import Stage from "$lib/stage.svelte";
   import Layer from "$lib/layer.svelte";
-  import Circle from "$lib/shapes/circle.svelte";
+  import Wedge from "$lib/shapes/wedge.svelte";
 
   let container;
   let stage;
@@ -12,13 +12,15 @@
 {#if container}
   <Stage width={500} height={500} {container} bind:stage>
     <Layer>
-      <Circle
+      <Wedge
         x={stage.width() / 2}
         y={stage.height() / 2}
         radius={70}
-        fill="red"
-        stroke="black"
+        angle={60}
+        fill={"red"}
+        stroke={"black"}
         strokeWidth={4}
+        rotation={-120}
       />
     </Layer>
   </Stage>

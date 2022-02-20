@@ -1,0 +1,13 @@
+---
+kind: pipeline
+type: docker
+name: default
+steps:
+  - name: build js app
+    image: node
+    commands:
+      - npm install
+      - npm run build
+---
+kind: signature
+hmac: 2bf60e60818d5b74b3d34f8df3074fab185d9280e8ada5743e14f8523cb5ab2e

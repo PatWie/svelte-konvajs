@@ -1,7 +1,7 @@
 <script lang="ts">
   import Stage from "$lib/stage.svelte";
   import Layer from "$lib/layer.svelte";
-  import Circle from "$lib/shapes/circle.svelte";
+  import Ellipse from "$lib/shapes/ellipse.svelte";
 
   let container;
   let stage;
@@ -12,11 +12,12 @@
 {#if container}
   <Stage width={500} height={500} {container} bind:stage>
     <Layer>
-      <Circle
+      <Ellipse
         x={stage.width() / 2}
         y={stage.height() / 2}
-        radius={70}
-        fill="red"
+        radiusX={100}
+        radiusY={70}
+        fill="yellow"
         stroke="black"
         strokeWidth={4}
       />
