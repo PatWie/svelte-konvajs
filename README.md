@@ -7,11 +7,13 @@ Svelte wrapper for konvajs Open for PRs and contributions!
 Full Documentation and demo [here](https://svelte-konvajs.patwie.com/)
 
 ### Installation
+
 ```shell script
 npm i svelte-konvajs
 ```
 
 ### Usage
+
 ```svelte
 <Stage width={500} height={500} {container}>
   <Layer>

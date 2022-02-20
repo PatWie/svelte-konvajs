@@ -9,9 +9,6 @@ export const textKey = Symbol();
 
 import { createEventDispatcher } from "svelte";
 
-
-
-
 export const eventNames = [
   "mouseover",
   "mouseout",
@@ -44,10 +41,9 @@ export const eventNames = [
   "transformstart",
   "transform",
   "transformend",
-]
+];
 export function AddEventDispatchers(node, dispatcher) {
   eventNames.forEach((event_name) => {
     node.on(event_name, dispatcher(event_name));
-  })
-
+  });
 }
