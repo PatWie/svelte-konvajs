@@ -9,7 +9,7 @@
     afterUpdate,
   } from "svelte";
   import Konva from "konva";
-  import { parentKey, eventNames } from "$lib/utils";
+  import { parentKey, eventNames, excludeKeys } from "$lib/utils";
   import { createEventDispatcher } from "svelte";
   const dispatcher = createEventDispatcher();
 
