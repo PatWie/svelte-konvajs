@@ -1,8 +1,9 @@
 <script lang="ts">
   import { onDestroy, setContext, onMount, afterUpdate } from "svelte";
   import Konva from "konva";
-  import { stageKey } from "$lib/utils";
-
+  import { stageKey, eventNames } from "$lib/utils";
+  import { createEventDispatcher } from "svelte";
+  const dispatcher = createEventDispatcher();
   export let container;
 
   export let width;
@@ -21,6 +22,11 @@
       height: height,
       scaleX: scale,
       scaleY: scale,
+    });
+    eventNames.forEach((event_name) => {
+      stage.on(event_name, (args) => {
+        dispatcher(event_name, { ...args });
+      });
     });
   });
 

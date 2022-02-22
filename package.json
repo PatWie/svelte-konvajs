@@ -16,7 +16,7 @@
     "url": "https://github.com/PatWie/svelte-konvajs"
   },
   "scripts": {
-    "dev": "svelte-kit dev",
+    "dev": "svelte-kit dev --port 3333",
     "build": "svelte-kit build",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview",
@@ -25,18 +25,20 @@
     "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
     "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
   },
+  "dependencies": {
+    "konva": "^8.3.2",
+    "canvas": "^2.9.0"
+  },
   "devDependencies": {
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/adapter-static": "^1.0.0-next.22",
     "@sveltejs/kit": "next",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
-    "canvas": "^2.9.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-svelte3": "^3.2.1",
     "highlightjs-svelte": "^1.0.6",
-    "konva": "^8.3.2",
     "prettier": "^2.5.1",
     "prettier-plugin-svelte": "^2.5.0",
     "svelte": "^3.44.0",

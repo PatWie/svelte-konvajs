@@ -9,32 +9,33 @@
     afterUpdate,
   } from "svelte";
   import Konva from "konva";
-  import { ringKey, layerKey, eventNames } from "$lib/utils";
+  import { parentKey, eventNames } from "$lib/utils";
   import { createEventDispatcher } from "svelte";
   const dispatcher = createEventDispatcher();
 
-  export let node: Konva.Ring = undefined;
-  setContext(ringKey, {
-    getRing: () => node,
-  });
+  const { getParent } = getContext(parentKey);
+  const parent = getParent();
 
-  const { getLayer } = getContext(layerKey);
-  const layer = getLayer();
+  export let init_only_props = [];
+  export let node: Konva.Ring = undefined;
+  setContext(parentKey, {
+    getParent: () => node,
+  });
 
   onMount(async () => {
     node = new Konva.Ring({
       ...($$restProps as Konva.RingConfig),
     });
-    layer.add(node);
+    parent.add(node);
     eventNames.forEach((event_name) => {
-      node.on(event_name, () => {
-        dispatcher(event_name);
+      node.on(event_name, (args) => {
+        dispatcher(event_name, {...args});
       });
     });
   });
 
   afterUpdate(() => {
-    node.setAttrs($$restProps as Konva.RingConfig);
+    node.setAttrs(excludeKeys($$restProps, init_only_props) as Konva.RingConfig);
   });
 
   onDestroy(() => {

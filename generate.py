@@ -46,7 +46,7 @@ for filename in filenames:
 def make_tutorial_tree(path):
     html = ""
     try:
-        names = os.listdir(path)
+        names = sorted(os.listdir(path))
     except OSError:
         pass
     else:

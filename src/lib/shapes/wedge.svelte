@@ -9,32 +9,35 @@
     afterUpdate,
   } from "svelte";
   import Konva from "konva";
-  import { wedgeKey, layerKey, eventNames } from "$lib/utils";
+  import { parentKey, eventNames, excludeKeys } from "$lib/utils";
   import { createEventDispatcher } from "svelte";
   const dispatcher = createEventDispatcher();
 
-  export let node: Konva.Wedge = undefined;
-  setContext(wedgeKey, {
-    getWedge: () => node,
-  });
+  const { getParent } = getContext(parentKey);
+  const parent = getParent();
 
-  const { getLayer } = getContext(layerKey);
-  const layer = getLayer();
+  export let init_only_props = [];
+  export let node: Konva.Wedge = undefined;
+  setContext(parentKey, {
+    getParent: () => node,
+  });
 
   onMount(async () => {
     node = new Konva.Wedge({
       ...($$restProps as Konva.WedgeConfig),
     });
-    layer.add(node);
+    parent.add(node);
     eventNames.forEach((event_name) => {
-      node.on(event_name, () => {
-        dispatcher(event_name);
+      node.on(event_name, (args) => {
+        dispatcher(event_name, { ...args });
       });
     });
   });
 
   afterUpdate(() => {
-    node.setAttrs($$restProps as Konva.WedgeConfig);
+    node.setAttrs(
+      excludeKeys($$restProps, init_only_props) as Konva.WedgeConfig
+    );
   });
 
   onDestroy(() => {

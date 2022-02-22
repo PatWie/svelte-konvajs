@@ -17,14 +17,14 @@
   const parent = getParent();
 
   export let init_only_props = [];
-  export let node: Konva.Line = undefined;
+  export let node: Konva.Path = undefined;
   setContext(parentKey, {
     getParent: () => node,
   });
 
   onMount(async () => {
-    node = new Konva.Line({
-      ...($$restProps as Konva.LineConfig),
+    node = new Konva.Path({
+      ...($$restProps as Konva.PathConfig),
     });
     parent.add(node);
     eventNames.forEach((event_name) => {
@@ -36,7 +36,7 @@
 
   afterUpdate(() => {
     node.setAttrs(
-      excludeKeys($$restProps, init_only_props) as Konva.LineConfig
+      excludeKeys($$restProps, init_only_props) as Konva.PathConfig
     );
   });
 

@@ -9,35 +9,25 @@
     afterUpdate,
   } from "svelte";
   import Konva from "konva";
-  import { parentKey, eventNames, excludeKeys } from "$lib/utils";
+  import { layerKey, eventNames } from "$lib/utils";
   import { createEventDispatcher } from "svelte";
   const dispatcher = createEventDispatcher();
 
-  const { getParent } = getContext(parentKey);
-  const parent = getParent();
+  const { getLayer } = getContext(layerKey);
+  const layer = getLayer();
 
-  export let init_only_props = [];
-  export let node: Konva.Line = undefined;
-  setContext(parentKey, {
-    getParent: () => node,
-  });
+  export let node: Konva.Transformer = undefined;
 
   onMount(async () => {
-    node = new Konva.Line({
-      ...($$restProps as Konva.LineConfig),
+    node = new Konva.Transformer({
+      ...($$restProps as Konva.TransformerConfig),
     });
-    parent.add(node);
     eventNames.forEach((event_name) => {
       node.on(event_name, (args) => {
         dispatcher(event_name, { ...args });
       });
     });
-  });
-
-  afterUpdate(() => {
-    node.setAttrs(
-      excludeKeys($$restProps, init_only_props) as Konva.LineConfig
-    );
+    layer.add(node);
   });
 
   onDestroy(() => {

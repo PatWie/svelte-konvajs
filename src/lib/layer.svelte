@@ -1,9 +1,12 @@
 <script lang="ts">
   import { onMount, onDestroy, setContext, getContext } from "svelte";
   import Konva from "konva";
-  import { layerKey, stageKey } from "./utils";
+  import { parentKey, layerKey, stageKey } from "./utils";
 
   let layer: Konva.Layer;
+  setContext(parentKey, {
+    getParent: () => layer,
+  });
   setContext(layerKey, {
     getLayer: () => layer,
   });

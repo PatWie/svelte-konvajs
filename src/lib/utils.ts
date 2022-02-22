@@ -1,16 +1,6 @@
-export const circleKey = Symbol();
-export const ellipseKey = Symbol();
 export const layerKey = Symbol();
-export const lineKey = Symbol();
-export const rectKey = Symbol();
-export const regularPolygonKey = Symbol();
+export const parentKey = Symbol();
 export const stageKey = Symbol();
-export const wedgeKey = Symbol();
-export const textKey = Symbol();
-export const textPathKey = Symbol();
-export const starKey = Symbol();
-export const ringKey = Symbol();
-export const arcKey = Symbol();
 
 export const eventNames = [
   "mouseover",
@@ -45,3 +35,13 @@ export const eventNames = [
   "transform",
   "transformend",
 ];
+
+export function excludeKeys(object: any, disallow_list: string[]) {
+  let answer = {};
+  const filtered = Object.keys(object)
+    .filter((key) => !disallow_list.includes(key))
+    .map((key) => {
+      answer[key] = object[key];
+    });
+  return answer;
+}
