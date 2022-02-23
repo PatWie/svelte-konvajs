@@ -45,8 +45,7 @@
           }}
           on:dragend={(e) => {
             console.log(e);
-            // This is different to the react example.
-            // TODO(): figure out why this is not needed in the React version.
+            // As we use reactivity, we need to take care of the updates.
             var mousePos = stage.getPointerPosition();
             star.x = mousePos.x;
             star.y = mousePos.y;

@@ -59,10 +59,10 @@
             selected_id = props.id;
           }}
         >
-          <!-- there is an issue: Cannot read properties of undefined _getPointerById-->
-          {#if selected_id == props.id}
-            <Transformer nodes={[rectangles[index]]} />
-          {/if}
+          <Transformer
+            nodes={[rectangles[index]]}
+            enabled={selected_id == props.id}
+          />
         </Rect>
       {/each}
     </Layer>

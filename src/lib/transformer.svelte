@@ -11,6 +11,10 @@
   import Konva from "konva";
   import { layerKey, eventNames } from "$lib/utils";
   import { createEventDispatcher } from "svelte";
+
+  // To avoid mounting and unmounting.
+  export let enabled = false;
+
   const dispatcher = createEventDispatcher();
 
   const { getLayer } = getContext(layerKey);
@@ -28,6 +32,19 @@
       });
     });
     layer.add(node);
+    if (!enabled) {
+      node.hide();
+    } else {
+      node.show();
+    }
+  });
+
+  afterUpdate(() => {
+    if (!enabled) {
+      node.hide();
+    } else {
+      node.show();
+    }
   });
 
   onDestroy(() => {
